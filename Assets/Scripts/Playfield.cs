@@ -25,18 +25,19 @@ public class Playfield : MonoBehaviour
     private GameObject previewTetris;
 
     private GameObject nextTetris;
-    private bool gameStarted = false;
+    //private bool gameStarted = false;
 
     [Header("Preview Position")]
     public Vector3 previewTetrisPosition;
 
     //nev mesh
+    /*
+        public float Speed = 10.0f;
 
-    public float Speed = 10.0f;
-
-    public LayerMask SelectMask;
-    public LayerMask PlaceMask;
-    private RectTransform rect;
+        public LayerMask SelectMask;
+        public LayerMask PlaceMask;
+        private RectTransform rect;
+    */
 
     private void Awake()
     {

@@ -7,18 +7,15 @@ public class TetrisBlock : MonoBehaviour
     //下落速率
     private float prevTime;
 
-    //数值越大速度越慢-free
-    //  private float fallTime = 0.8f;
+    //数值越大速度越慢-free mode
+     private float fallTime = 0.8f;
 
-    // challenge
-    private float fallTime = 30f;
+    // challenge mode
+   // private float fallTime = 10f;
 
     private void Start()
     {
-        if (!CheckVaildMove())
-        {
-            GameManager.instance.SetGameIsOver();
-        }
+        //游戏结束画面
     }
 
     private Vector3 nextMove = Vector3.zero;
@@ -26,22 +23,25 @@ public class TetrisBlock : MonoBehaviour
     private void Update()
     {
         //下落节奏，检查网格剩余空位,/数越大速度越快
-        if (Time.time - prevTime > (Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Right Bumper") ? fallTime / 500 : fallTime))
+        if (Time.time - prevTime > (Input.GetButtonDown("Left Bumper") ? fallTime / 500 : fallTime))
         //  GetButtonDown("Left Bumper")
         {
             transform.position += Vector3.down;
+
             if (!CheckVaildMove())
             {
                 transform.position += Vector3.up;
                 //delete layer id possible
-
                 enabled = false;
                 //create a new tetris block
-                if (GameManager.instance.ReadGameIsOver())
-                {
-                    Playfield.instance.SpawnNewBlock();
-                }
+                Playfield.instance.SpawnNewBlock();
             }
+
+            //游戏结束
+            /*   if (!GameManager.instance.ReadGameIsOver())
+               {
+                   Playfield.instance.SpawnNewBlock();
+               }*/
             else
             {
                 //update the grid
